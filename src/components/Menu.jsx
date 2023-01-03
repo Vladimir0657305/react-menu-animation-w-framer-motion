@@ -17,16 +17,18 @@ export default function Menu() {
                 borderRadius: '25px',
             }}
         >
-            {
-                menuData.map((item, index) => (
-                    <MenuItem
-                        key={item}
-                        item={item}
-                        isSelected={activeIndex === index}
-                        handleClick={() => setActive(index)}
-                    />
-                ))
-            }
+            <AnimateSharedLayout>
+                {
+                    menuData.map((item, index) => (
+                        <MenuItem
+                            key={item}
+                            item={item}
+                            isSelected={activeIndex === index}
+                            handleClick={() => setActive(index)}
+                        />
+                    ))
+                }
+            </AnimateSharedLayout>
         </div>
     );
 }
@@ -42,14 +44,15 @@ function MenuItem(props) {
         <motion.div
             onClick={handleClick}
             style={{
-                padding: '0 0.5rem',
+                margin: '0 0.5rem',
                 fontWeight: 900,
+                fontSize: '30px',
                 position: 'relative'
             }}
             initial={{ color: '#000' }}
             animate={{ color: isSelected ? 'rgb(255, 0, 0)' : '#000' }}
         >
-            {isSelected && <ActiveLine/>}
+            {isSelected && <ActiveLine />}
             {item}
         </motion.div>
     );
